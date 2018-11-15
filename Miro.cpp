@@ -8,13 +8,13 @@
 #include "Node.h"
 using namespace std;
 
-const int MAZE_ROW_SIZE = 6;//미로의 행 개수
-const int MAZE_COL_SIZE = 14;//미로의 열 개수
+const int MAZE_ROW_SIZE = 20;//미로의 행 개수
+const int MAZE_COL_SIZE = 31;//미로의 열 개수
 char miro[MAZE_ROW_SIZE][MAZE_COL_SIZE]; //미로를 저장하는 2차원 배열
 
 void LoadMiro() { //파일의 미로를 2차원배열에 저장하는 함수 //벽은1 공간은0, 입구는(1,0), 출구는 x여야 돌아감
 	FILE* fp;
-	fopen_s(&fp,"miromap.txt", "rt");
+	fopen_s(&fp,"Maze_3.txt", "rt");
 	if (fp == NULL) {
 		cout << "파일 입출력 에러" << endl;
 		exit(1);
@@ -26,7 +26,7 @@ void LoadMiro() { //파일의 미로를 2차원배열에 저장하는 함수 //벽은1 공간은0, 입�
 			miro[i][j] = fgetc(fp);
 		}
 	}
-	miro[1][0] = 'e'; //입구설정
+	miro[2][0] = 'e'; //입구설정
 	fclose(fp);
 }
 void print() //미로를 화면에 출력
@@ -146,7 +146,7 @@ int main() {
 	LoadMiro(); //미로을 불러오는 함수 호출
 	print();//미로를 출력하는 함수 호출
 
-	MiroSearch(new Node(1, 0)); //입구를 전달하여 미로탐색하는 함수를 호출합니다
+	MiroSearch(new Node(2, 0)); //입구를 전달하여 미로탐색하는 함수를 호출합니다
 
 	return 0;
 }
